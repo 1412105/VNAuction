@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <form id="checkout" method="post" action="/checkout">
+          <div id="payment-form"></div>
+          <input type="submit" value="Pay <%=@product.buy_now_price%>">
+        </form>
+    </div>
+</div>
+<script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+<script>
+// We generated a client token for you so you can test out this code
+// immediately. In a production-ready integration, you will need to
+// generate a client token on your server (see section below).
+var clientToken = "<%=@client_tokent%>"
+braintree.setup(clientToken, "dropin", {
+  container: "payment-form"
+});
+</script>

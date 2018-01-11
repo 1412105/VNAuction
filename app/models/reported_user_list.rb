@@ -1,0 +1,2 @@
+class ReportedUserList < ApplicationRecord
+end

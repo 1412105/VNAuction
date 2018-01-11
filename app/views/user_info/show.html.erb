@@ -1,0 +1,276 @@
+<% content_for :css do %>
+    <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/user_info.scss">
+<% end %>
+<hr>
+<% if @user.id != session[:current_user_id] %>
+    <script type="text/javascript">
+        var _0xea95=["\x61\x63\x74\x69\x76\x65","\x61\x64\x64\x43\x6C\x61\x73\x73","\x23\x6D\x79\x54\x61\x62\x20\x6C\x69\x3A\x6E\x74\x68\x2D\x63\x68\x69\x6C\x64\x28\x31\x29","\x72\x65\x6D\x6F\x76\x65","\x23\x6E\x6F\x74\x69\x66\x69\x63\x61\x74\x69\x6F\x6E","\x23\x68\x6F\x6D\x65","\x23\x69\x6E\x66\x6F\x20\x6C\x69\x3A\x6E\x74\x68\x2D\x63\x68\x69\x6C\x64\x28\x35\x29","\x23\x62\x75\x69\x6C\x64\x2D\x69\x6E\x66\x6F","\x72\x65\x61\x64\x79"];$(document)[_0xea95[8]](function(){$(_0xea95[2])[_0xea95[1]](_0xea95[0]);$(_0xea95[2])[_0xea95[3]]();$(_0xea95[4])[_0xea95[3]]();$(_0xea95[5])[_0xea95[1]](_0xea95[0]);$(_0xea95[6])[_0xea95[3]]();$(_0xea95[7])[_0xea95[3]]()})
+    </script>
+<% end %>
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-sm-3" style="text-align: center;">
+            <% if @user.avatar? %>
+                <%= image_tag @user.avatar.url, :class => "avatar img-circle"%>
+            <% else %>
+                <img src="//placehold.it/200" class="avatar img-circle" alt="avatar">
+            <% end %>
+            <h1 class="text-center"><%= @user.name %></h1>
+        </div>
+        <div class="col-sm-9" style="text-align: center;">
+            <%= image_tag "welcome.png", :style => "text-align: center;" %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+
+      <ul class="list-group">
+        <li class="list-group-item text-muted">Profile</li>
+        <li class="list-group-item text-right left_profile">
+            <div style="padding: 10px 5px;">
+                <span class="pull-left"><strong>Status</strong></span>
+                <%= @user.status %>
+            </div>
+        </li>
+        <li class="list-group-item text-right left_profile">
+            <div style="padding: 10px 5px;">
+                <span class="pull-left"><strong>Email</strong></span>
+                <%= @user.email %>
+            </div>
+        </li>
+        <li class="list-group-item text-right left_profile">
+            <div style="padding: 10px 5px;">
+                <span class="pull-left"><strong>Telephone</strong></span>
+                <%= @user.phone_number %>
+            </div>
+        </li>
+        <li class="list-group-item text-right left_profile">
+            <div style="padding: 10px 5px;">
+                <span class="pull-left"><strong>Address</strong></span>
+                <%= @user.address %>
+            </div>
+        </li>
+        <% if @user.id == current_user["id"] %>
+          <li class="list-group-item text-right">
+              <a href="\user/info/edit/<%=@user.id%>">
+                  <button>edit</button>
+              </a>
+          </li>
+        <%end%>
+      </ul>
+      <% if @user.id == current_user["id"] %>
+        <ul class="list-group">
+          <li class="list-group-item text-muted">Building Infomation</li>
+          <li class="list-group-item text-right"><span class="pull-left"><strong>Credit Card</strong></span> <button>edit</button></li>
+          <li class="list-group-item text-right"><span class="pull-left"><strong>Paypal</strong></span> <button>edit</button></li>
+          <li class="list-group-item text-right"><a href="#"><button>+</button></a>
+        </ul>
+        <%end%>
+
+        </div>
+        <!--/col-3-->
+        <div class="col-sm-9">
+            <ul class="nav nav-tabs" id="myTab">
+                    <li class="active">
+                        <a href="#notification" data-toggle="tab">Notifications</a>
+                    </li>
+                    <li>
+                        <a href="#home" data-toggle="tab">Biddings</a>
+                    </li>
+                    <li>
+                        <a href="#product_selling" data-toggle="tab">Products Selling</a>
+                    </li>
+                    <li>
+                        <a href="#favorite" data-toggle="tab">Favorite Products</a>
+                    </li>
+            </ul>
+
+    </div>
+    <!--/col-3-->
+    <% if @user.id == current_user["id"] %>
+      <div class="col-sm-9">
+        <% if @user.status == "blocked" %>
+          <h1 class="text-center">You has been blocked</h1>
+        <%end%>
+
+        <ul class="nav nav-tabs" id="myTab">
+          <li class="active"><a href="#notification" data-toggle="tab">Notifications</a></li>
+          <li><a href="#home" data-toggle="tab">Biddings</a></li>
+          <li><a href="#product_selling" data-toggle="tab">Products Selling</a></li>
+          <li><a href="#favorite" data-toggle="tab">Favorite Products</a></li>
+        </ul>
+
+        <div class="tab-content">
+        <div class="tab-pane active" id="notification">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Content</th>
+                <th>Product</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id="items">
+            <% @messages.reverse_each do |message| %>
+              <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle ">
+                <td> 
+                    <%= message.typee %> 
+                </td>
+                <td> <%= message.content %> </td>
+                <td> 
+                  <%= link_to product_path(message.product_id), class: "card-title" do %>
+                    <%= message.product.name %>
+                  <% end %>    
+                </td>
+                <td><%= message.updated_at %></td>                                  
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+    </div>
+          <div class="tab-pane" id="home">
+            <div class="table-responsive">
+            <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>Product name</th>
+              <th>Current price</th>
+              <th>Buy now price </th>
+              <th>Ending time</th>
+              <th>Status</th>
+              <th>Winner/High bidder</th>
+            </tr>
+          </thead>
+          <tbody id="items">
+            <% @bidproducts.each do |product| %>
+              <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle ">
+                <td> 
+                  <%= link_to product_path(product.id), class: "card-title" do %>
+                    <%= product.name %>
+                  <% end %>    
+                </td>
+                <td><%= product.current_price %>$</td>
+                <td><%= product.buy_now_price %>$</td>
+                <td><%= product.end_time %></td>
+                <td><%= product.status %></td>
+                <% if product.winner %>
+                  <td> 
+                    <%= link_to profile_path(product.winner), class: "card-title" do %>
+                      View profile
+                    <% end %>
+                  </td>
+                <% else %>  
+                  <td>No one</td>
+                <% end %>                
+              </tr>
+            <% end %>
+          </tbody>
+            </table>
+            </div>
+            
+            <!--/table-resp-->
+          </div>
+          <!--/tab-pane-->
+          <div class="tab-pane" id="product_selling">
+
+              <div class="table-responsive">
+                <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>Product name</th>
+                  <th>Current price</th>
+                  <th>Max price </th>
+                  <th>Ending time</th>
+                  <th>Status</th>
+                  <th>Winner/High bidder</th>
+                </tr>
+              </thead>
+              <tbody id="items">
+                <% @sellproducts.each do |product| %>
+                  <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle ">
+                    <td> 
+                      <%= link_to product_path(product.id), class: "card-title" do %>
+                        <%= product.name %>
+                      <% end %>    
+                    </td>
+                    <td><%= product.current_price %>$</td>
+                    <td><%= product.max_price %>$</td>
+                    <td><%= product.end_time %></td>
+                    <td><%= product.status %></td>
+                    <% if product.winner %>
+                      <td> 
+                        <%= link_to profile_path(product.winner), class: "card-title" do %>
+                          View profile
+                        <% end %>
+                      </td>
+                    <% else %>  
+                      <td>No one</td>
+                    <% end %>                
+                  </tr>
+                <% end %>
+              </tbody>
+                </table>
+              </div>
+
+          </div>
+          <!--/tab-pane-->
+          
+
+          <div class="tab-pane" id="favorite">
+          <div class="table-responsive">
+          <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Product name</th>
+            <th>Current price</th>
+            <th>Max price </th>
+            <th>Ending time</th>
+            <th>Status</th>
+            <th>Winner/High bidder</th>
+          </tr>
+        </thead>
+        <tbody id="items">
+          <% @favorites.each do |favorite| %>
+            <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle ">
+              <td> 
+                <%= link_to product_path(favorite.product.id), class: "card-title" do %>
+                  <%= favorite.product.name %>
+                <% end %>    
+              </td>
+              <td><%= favorite.product.current_price %>$</td>
+              <td><%= favorite.product.max_price %>$</td>
+              <td><%= favorite.product.end_time %></td>
+              <td><%= favorite.product.status %></td>
+              <% if favorite.product.winner %>
+                <td> 
+                  <%= link_to profile_path(favorite.product.winner), class: "card-title" do %>
+                    View profile
+                  <% end %>
+                </td>
+              <% else %>  
+                <td>No one</td>
+              <% end %>                
+            </tr>
+          <% end %>
+        </tbody>
+          </table>
+        </div>
+          </div>
+
+        </div>
+        <!--/tab-pane-->
+      </div>
+      <!--/tab-content-->
+
+    </div>
+    <!--/col-9-->
+    <% end %>
+</div>
+<!--/col-9-->
+</div>
+<!--/row--></hr><% content_for :js do %>
+<script type="text/javascript" src="../../assets/javascript/user_info.js"></script><% end %>

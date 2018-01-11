@@ -1,0 +1,22 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: sh /ibid/scripts/startup.sh
+    volumes:
+      - .:/ibid
+    ports:
+      - "3000:3000"
+    container_name: ibid
+    links:
+      - db
+      - redis
+    stdin_open: true
+    tty: true
+  db:
+    image: postgres
+    container_name: db_1
+
+  redis:
+    image: redis
+    container_name: redis_1

@@ -1,0 +1,64 @@
+<div class="Center-Page">
+  <div class="Label">
+    <h1>Editing Product</h1>
+  </div>
+
+  <%= form_for @product, html: { multipart: true } do |f| %>
+      <% if @product.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+    
+          <ul>
+          <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="field">
+        <%= f.text_field :name, class: "input", placeholder: "name"  %>
+      </div>
+      <div class="field">
+        <%= f.text_area :description, style: "margin-top: 10px; width: 350px; height: 200px;", placeholder: "Description"  %>
+      </div>
+      <div class="field">
+        <%= f.label :category, style: "margin-top: 10px; margin-right: 15px;" %><br>
+        <%= f.text_field :category, class: "input" , disabled: "true" %>
+      </div>
+      <div class="field">
+        <%= f.label :buy_now_price %><br>
+        <%= f.text_field :buy_now_price, class: "input" %>
+      </div>
+        <div class="field">
+        <%= f.label :starting_price %><br>
+        <%= f.text_field :starting_price, class: "input" %>
+      </div>
+        <div class="field">
+        <%= f.label :rising_price %><br>
+        <%= f.text_field :rising_price, class: "input" %>
+      </div>
+      <div>
+      <div class="field">
+        <%= f.label :hours_to_bid %><br>
+        <%= f.text_field :hours_to_bid, class: "input" %>
+      </div>
+      <div class="field">
+        <%= f.label :image %><br>
+        <%= f.file_field :image %>
+        <% if f.object.image? %>
+          <%= image_tag f.object.image.thumb.url %>
+          <%= f.label :remove_image %>
+          <%= f.check_box :remove_image %> 
+        <% end %>
+      </div>
+      <br>
+      <div class="actions"  style=" padding-left: 60px;">
+        <%= f.submit %>
+      </div>
+  <% end %>
+    
+
+  <%= link_to 'Show', @product %> |
+  <%= link_to 'Back',products_path %>
+</div>

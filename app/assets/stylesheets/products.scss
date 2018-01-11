@@ -1,0 +1,39 @@
+.product-thumbnail {
+    @extend .card !optional;
+    margin-bottom: 10px;
+    .card-text {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 10px;
+    }
+}
+
+.product-highlight {
+    background-color: yellow;
+}
+
+.Label {
+    display: inline-block;
+    color: blue !important;
+    transition: 80%;
+    margin-bottom: 15px;
+    font-weight: bold;
+    padding-left: 60px;
+}
+
+.sub-label{
+
+}
+
+.center-Box {
+
+}
+
+.Center-Page {
+    display: inline-block;
+    margin: 30px;
+    // position: absolute;
+    right: 42%;
+}

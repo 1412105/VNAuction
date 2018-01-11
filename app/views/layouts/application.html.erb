@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Ibid</title>
+      <%= csrf_meta_tags %>
+      <%= favicon_link_tag 'favicon.ico' %>
+      
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_link_tag 'custom-styles.css' , media: 'all', 'data-turbolinks-track': 'reload'%>
+      <%= stylesheet_link_tag 'style.css' , media: 'all', 'data-turbolinks-track': 'reload'%>
+      <%= stylesheet_link_tag 'owl.carousel.css' , media: 'all', 'data-turbolinks-track': 'reload'%>
+      <%= javascript_include_tag 'application.js', 'data-turbolinks-track': 'reload' %>
+      
+
+      <%= yield :css %>
+
+    </head>
+
+    <body>
+<html>
+  <head>
+  <body>
+    <%= render "layouts/header" %>
+
+    <div class="container content">
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+
+    
+
+    <%= yield :js %>
+  </body>
+</html>

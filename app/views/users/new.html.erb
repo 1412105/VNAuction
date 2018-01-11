@@ -1,0 +1,30 @@
+<%= render partial: 'flash_message', locals: {messages: flash} %>
+<div class="login-form">
+	<div class="row">
+	  <div class="col-md-12 login-label">
+	  	<h1>Register account</h1>
+	  </div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<%= form_with scope: :user,url: users_path, local:true do |f| %>
+				<div class="form-group">
+				<%= f.text_field :name, class: "input form_control", placeholder: "name" %> <span style="color: red;">*</span> 
+				</div>
+				<div class="form-group">
+				<%= f.text_field :email, class: "input form_control", placeholder: "email" %>  <span style="color: red;">*</span> 
+				</div>
+
+				<div class="form-group">
+				<%= f.password_field :password, class: " input form_control", placeholder: "password" %> <span style="color: red;">*</span> 
+				</div>
+				<button type="submit" class="btnlogin btn btn-success">Register</button>
+
+			<%end%>
+		</div>
+		<br>
+	    <%= link_to "Have an Account!" , login_path %>
+
+	</div>
+</div>

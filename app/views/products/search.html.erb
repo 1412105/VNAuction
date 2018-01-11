@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Search results:</h1>
+
+<% if current_user %>
+<%= link_to 'New Product', new_product_path %>
+<%end%>
+<br>
+<br>
+<div class="row">
+<div class="col-md-9 ">
+  <% @products.reverse_each do |product| %>
+    <div class="product-thumbnail">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-2">
+          <img src=<%= product.image.thumb.url %> alt="Smiley face" width="64" height="64">
+        </div>
+        <div class="col-md-4">
+        <h4 class="card-title"> 
+          <%= link_to product_path(product.id), class: "card-title" do %>
+            <%= product.name %>
+            <% end %>    
+
+          </h4>
+        <h6 class="card-subtitle mb-2 text-muted"><%= truncate(product.description) %></h6>		
+       
+      </div>
+      </div>
+    </div>
+  </div>
+  <% end %>	
+</div>
+</div>
+
+
+
+

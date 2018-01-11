@@ -1,0 +1,84 @@
+*** user: id, password_hash, name, email, phone_number, address, photo_id, following_number, posted_this_month, is_vip
+  create table:
+    + email unique
+    + phone_number unique
+  insert:
+    + posted_this_month > 0 and defualt = 0
+    + is_vip defautl false
+  back-end:
+    + password hash by bcrypt
+
+*** product: id, name, photo_product_list, description, is_multi_language, buy_now_price, starting_price, rising_price, ending_time, status, seller_id, accepter_id, accepted_time, can_edit
+  create table:
+    + photo_list_id unique
+  insert, update:
+    + status defauft is pending
+    + ending_time > create_up
+    + can_edit defauft TRUE
+  back-end
+    + ending_time is not null
+    + starting_price is not null
+    + is_multi_language: check require of user
+    + check_validation: 0 < starting_price < buy_now_price,
+    + 0 < rising
+
+*** vip_list: id, user_id, ending_date
+    create_table:
+    + user_id is not null;
+    insert, update:
+    + user_id is exists on user table
+    + update is_vip on user table
+
+*** following_user_list: user_id, followed_id
+  insert, update:
+    + user is  exists
+    + update: following_number on user table.
+  delete
+    + update: following_number on user table.
+
+*** photo_list: id, type, url
+  create_table:
+    + url is not NULL
+    + type is "product" or  "user"
+
+*** photo: id, photo_list_id
+  create_table:
+    + photot_list is not null
+
+*** reported_product_list: id, reported_product_id, reporter_id, reason
+  create_table
+    + reported_product_id is not NULL
+    + reporter_id is not NULL
+    + reason is not NULL
+
+*** blocked_product_list: id, blocked_id, ending_time, accepter_id
+  create_table:
+    + blocked_id is not null
+    + acccepter_id is not null
+  insert, update
+    + ending_time > create_up
+
+*** reported_user_list: id, reported_user_id, reporter_id, reason
+  create _table:
+    + blocked_id is not NULL
+    + accepter_id is not NULL
+    + reason is not NULL
+
+*** blocked_user_list: id, blocked_id, ending_date, accepter_id, block_level
+  create_table:
+    + blocked_id is not null
+    + acccepter_id is not null
+  insert, update
+    + ending_time > create_up
+
+*** category: id, category
+  create_table:
+    + category is not NULL
+
+*** category_product_list: id, category_id, product_id.
+
+*** multi_language: id, product_id, name, description, language
+
+*** bid_history: id, product_id, user_id, bid_cost, status
+
+*** bid_auto: id, product, user_id, highest_cost, status

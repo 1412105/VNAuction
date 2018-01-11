@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password:
+  pool: 5
+
+development:
+  <<: *default
+  database: ibid_development
+
+test:
+  <<: *default
+  database: ibid_test
+
+production:
+  <<: *default
+  database: ibid_production
+  username: ibid
+  password: <%= ENV['IBID_DATABASE_PASSWORD'] %>

@@ -1,0 +1,2 @@
+class BlockedProductList < ApplicationRecord
+end

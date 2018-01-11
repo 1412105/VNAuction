@@ -1,0 +1,2 @@
+class MultiLanguage < ApplicationRecord
+end

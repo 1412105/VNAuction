@@ -1,0 +1,2 @@
+class ReportedProductList < ApplicationRecord
+end

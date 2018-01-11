@@ -1,0 +1,271 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products:</h1>
+
+<% content_for :css do %>
+  <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/user_info.scss">
+<% end %>
+<hr>
+<div class="container bootstrap snippet">
+
+<div class="row">
+  <div class="col-md-12">
+
+    <ul class="nav nav-tabs" id="myTab">
+      <li class="active"><a href="#all" data-toggle="tab">All</a></li>
+      <li><a href="#phone" data-toggle="tab">Phone</a></li>
+      <li><a href="#computer" data-toggle="tab">Computer</a></li>
+      <li><a href="#food" data-toggle="tab">Food</a></li>
+      <li><a href="#beverage" data-toggle="tab">Beverage</a></li>
+      <li><a href="#vehicle" data-toggle="tab">Vehicle</a></li>
+      <li><a href="#book" data-toggle="tab">Book</a></li>
+      <li><a href="#clothe" data-toggle="tab">Clothe</a></li>
+      <li><a href="#furniture" data-toggle="tab">Furniture</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="all">
+          <br>
+          <% @products.reverse_each do |product| %>
+            <div class="product-thumbnail">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-2">
+                    <img src=<%= product.image.url %> alt="Smiley face" width="64" height="64">
+                  </div>
+                  <div class="col-md-4">
+                    <h4 class="card-title"> 
+                      <%= link_to product_path(product.id), class: "card-title" do %>
+                        <%= product.name %> (<%= product.status %>)
+                        <% end %>    
+                    </h4>
+                    <h6 class="card-subtitle mb-2 text-muted"><%= truncate(product.description) %></h6>		               
+                  </div>
+                  <div class="col-md-4">
+                    <h4 class="card-title"><%= product.current_price %>$</h4>		
+                  </div>
+                </div>
+            </div>
+          </div>
+        <% end %>	
+      </div> 
+      <div class="tab-pane " id="phone">
+        <br>
+        <% @phones.reverse_each do |product| %>
+          <div class="product-thumbnail">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src=<%= product.image.url %> alt="Smiley face" width="64" height="64">
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"> 
+                    <%= link_to product_path(product.id), class: "card-title" do %>
+                      <%= product.name %> (<%= product.status %>)
+                      <% end %>    
+                  </h4>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= truncate(product.description) %></h6>		               
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"><%= product.current_price %>$</h4>		
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>	
+      </div>
+      <div class="tab-pane " id="computer">
+        <br>
+        <% @computers.reverse_each do |product| %>
+          <div class="product-thumbnail">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src=<%= product.image.url %> alt="Smiley face" width="64" height="64">
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"> 
+                    <%= link_to product_path(product.id), class: "card-title" do %>
+                      <%= product.name %> (<%= product.status %>)
+                      <% end %>    
+                  </h4>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= truncate(product.description) %></h6>		               
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"><%= product.current_price %>$</h4>		
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>	
+      </div>
+      <div class="tab-pane " id="food">
+        <br>
+        <% @foods.reverse_each do |product| %>
+          <div class="product-thumbnail">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src=<%= product.image.url %> alt="Smiley face" width="64" height="64">
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"> 
+                    <%= link_to product_path(product.id), class: "card-title" do %>
+                      <%= product.name %> (<%= product.status %>)
+                      <% end %>    
+                  </h4>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= truncate(product.description) %></h6>		               
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"><%= product.current_price %>$</h4>		
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>	
+      </div>   
+      <div class="tab-pane " id="beverage">
+        <br>
+        <% @beverages.reverse_each do |product| %>
+          <div class="product-thumbnail">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src=<%= product.image.url %> alt="Smiley face" width="64" height="64">
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"> 
+                    <%= link_to product_path(product.id), class: "card-title" do %>
+                      <%= product.name %> (<%= product.status %>)
+                      <% end %>    
+                  </h4>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= truncate(product.description) %></h6>		               
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"><%= product.current_price %>$</h4>		
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>	
+      </div> 
+      <div class="tab-pane " id="vehicle">
+        <br>
+        <% @vehicles.reverse_each do |product| %>
+          <div class="product-thumbnail">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src=<%= product.image.url %> alt="Smiley face" width="64" height="64">
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"> 
+                    <%= link_to product_path(product.id), class: "card-title" do %>
+                      <%= product.name %> (<%= product.status %>)
+                      <% end %>    
+                  </h4>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= truncate(product.description) %></h6>		               
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"><%= product.current_price %>$</h4>		
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>	
+      </div> 
+      <div class="tab-pane " id="book">
+        <br>
+        <% @books.reverse_each do |product| %>
+          <div class="product-thumbnail">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src=<%= product.image.url %> alt="Smiley face" width="64" height="64">
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"> 
+                    <%= link_to product_path(product.id), class: "card-title" do %>
+                      <%= product.name %> (<%= product.status %>)
+                      <% end %>    
+                  </h4>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= truncate(product.description) %></h6>		               
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"><%= product.current_price %>$</h4>		
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>	
+      </div> 
+      <div class="tab-pane " id="clothe">
+        <br>
+        <% @clothes.reverse_each do |product| %>
+          <div class="product-thumbnail">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src=<%= product.image.url %> alt="Smiley face" width="64" height="64">
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"> 
+                    <%= link_to product_path(product.id), class: "card-title" do %>
+                      <%= product.name %> (<%= product.status %>)
+                      <% end %>    
+                  </h4>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= truncate(product.description) %></h6>		               
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"><%= product.current_price %>$</h4>		
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>	
+      </div> 
+      <div class="tab-pane " id="furniture">
+        <br>
+         <div class="table-responsive">
+        <% @furnitures.reverse_each do |product| %>
+          <div class="product-thumbnail">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src=<%= product.image.url %> alt="Smiley face" width="64" height="64">
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"> 
+                    <%= link_to product_path(product.id), class: "card-title" do %>
+                      <%= product.name %> (<%= product.status %>)
+                      <% end %>    
+                  </h4>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= truncate(product.description) %></h6>		               
+                </div>
+                <div class="col-md-4">
+                  <h4 class="card-title"><%= product.current_price %>$</h4>		
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>	
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+</div>
+<!--/row-->
+</hr>
+<% content_for :js do %>
+    <script type="text/javascript" src="../../assets/javascript/user_info.js"></script>
+<% end %>
+
+
+
+
+
+
+
+
